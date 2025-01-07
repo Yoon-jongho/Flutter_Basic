@@ -23,6 +23,7 @@ class App extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 40,
+              // vertical: 40,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

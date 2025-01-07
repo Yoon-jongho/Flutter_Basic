@@ -22,6 +22,7 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    // BuildContext는 위젯 트리에서 위젯의 위치를 제공하고 이를통해 상위 요소에 접근할 수 있음
     return MaterialApp(
       theme: ThemeData(
         textTheme: const TextTheme(
