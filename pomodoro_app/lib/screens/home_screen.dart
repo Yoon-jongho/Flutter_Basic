@@ -102,13 +102,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         : Icons.play_circle_outline),
                   ),
                 ),
-                Center(
-                  child: IconButton(
-                    iconSize: 50,
-                    color: Theme.of(context).cardColor,
-                    onPressed: onStopPressed,
-                    icon: Icon(Icons.stop_circle_outlined),
-                  ),
+                IconButton(
+                  iconSize: 50,
+                  color: Theme.of(context).cardColor,
+                  onPressed: onStopPressed,
+                  icon: Icon(Icons.stop_circle_outlined),
                 ),
               ],
             ),
