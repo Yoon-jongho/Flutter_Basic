@@ -28,3 +28,9 @@
   왜냐하면 React Native에선 자바스크립트를 통해서 운영체제와 대화를하고 운영체제는 네이티브 앱처럼 보이는 컴포넌트와 위젯을 만들어냄
 - Flutter로 iOS 느낌나게 하려면 iOS를 배껴만든 컴포넌트들을 사용해야함 (비슷하게 꾸밀순 있어도 완전하게 똑같진않음)
 - 커스텀에 자신이 있다면 flutter
+
+# VScode 툴팁
+
+- 왼쪽하단 톱니바퀴모양 -> Command Palette -> Open User Settings
+- "editor.codeActionsOnSave": { "source.fixAll": true, } 추가
+- "dart.previewFlutterUiGuides": true 추가
