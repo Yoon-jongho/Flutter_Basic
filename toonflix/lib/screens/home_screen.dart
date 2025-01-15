@@ -29,26 +29,74 @@ class HomeScreen extends StatelessWidget {
         future: webtoons,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return ListView.separated(
-              // ListView.builder는 사용자가 보고 있는 아이템만 build함
-              // ListView.separated는 필수인자를 하나 더가짐(separatorBuilder)
-              // separatorBuilder는 Widget을 리턴하고 그 widget은 리스트 아이템 사이에 렌더링됨
-              scrollDirection: Axis.horizontal,
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                print(index);
-                var webtoon = snapshot.data![index];
-                return Text(webtoon.title);
-              },
-              separatorBuilder: (context, index) => SizedBox(
-                width: 20,
-              ),
+            return Column(
+              children: [
+                SizedBox(
+                  height: 50,
+                ),
+                Expanded(
+                  child: makeList(snapshot),
+                ),
+              ],
             );
           }
           return const Center(
             child: CircularProgressIndicator(),
           );
         },
+      ),
+    );
+  }
+
+  ListView makeList(AsyncSnapshot<List<WebtoonModel>> snapshot) {
+    return ListView.separated(
+      // ListView.builder는 사용자가 보고 있는 아이템만 build함
+      // ListView.separated는 필수인자를 하나 더가짐(separatorBuilder)
+      // separatorBuilder는 Widget을 리턴하고 그 widget은 리스트 아이템 사이에 렌더링됨
+      scrollDirection: Axis.horizontal,
+      itemCount: snapshot.data!.length,
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      itemBuilder: (context, index) {
+        print(index);
+        var webtoon = snapshot.data![index];
+        return Column(
+          children: [
+            Container(
+              width: 250,
+              clipBehavior:
+                  Clip.hardEdge, // clipBehavior는 자식의 부모 영역 침범을 제어하는 방법임
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 10,
+                    offset: Offset(10, 10), // 그림자의 위치를 정함
+                    color: Colors.black.withAlpha(128),
+                  ),
+                ],
+              ),
+              child: Image.network(
+                webtoon.thumb,
+                headers: const {
+                  "User-Agent":
+                      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
+                },
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              webtoon.title,
+              style: TextStyle(
+                fontSize: 22,
+              ),
+            ),
+          ],
+        );
+      },
+      separatorBuilder: (context, index) => SizedBox(
+        width: 40,
       ),
     );
   }
